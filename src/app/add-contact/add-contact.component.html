@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="header">
+        <h2>Add Contact</h2>
+        <button type="button" class="btn btn-dark">Go Back</button>
+    </div>
+    <div class="formstyle">
+        <form [formGroup]='contactForm' (ngSubmit)="submitContactHandler()">
+            <!-- step:4 connect html form field with ts form field  using --databinding -->
+            <!-- got to ts for step 5 -->
+            <div class="form-group row space">
+                <label for="inputName" class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputName" placeholder="Name" formControlName='name'
+                        [ngClass]="{
+                            'is-invalid': contactForm.get('name').touched
+                        && contactForm.get('name').invalid}">
+                    <div class="invalid-feedback">
+                        <div>Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row space">
+                <label for="inputPhone" class="col-sm-3 col-form-label">Phone</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control is-invalid" id="inputPhone" placeholder="Phone"
+                        formControlName='phone' [ngClass]="{
+                            'is-invalid':contactForm.get('phone').touched
+                        &&contactForm.get('phone').invalid}">
+                    <div class="invalid-feedback">
+                        <div>Phone is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row space">
+                <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control " id="inputEmail" placeholder="Email"
+                        formControlName='email' [ngClass]="{
+                            'is-invalid':contactForm.get('email').touched
+                        &&contactForm.get('email').invalid}">
+                    <div class="invalid-feedback">
+                        <div *ngIf="contactForm.get('email').errors?.required">Email is required</div>
+                        <div *ngIf="contactForm.get('email').errors?.email">Email is not valid</div>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <button type="submit" disabled="true" class="btn btn-primary space">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
